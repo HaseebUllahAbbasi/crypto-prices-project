@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import CryptoPrice, Currency
+import requests
 
 
 def generate_static_data():
@@ -24,17 +25,19 @@ def generate_static_data():
 
 def display_prices(request):
     # Generate and save static data
-    generate_static_data()
+    # generate_static_data()
 
     # Fetch all currencies including the static ones
-    latest_crypto_price = CryptoPrice.objects.latest('timestamp')
+    last_updated = CryptoPrice.objects.latest('timestamp')
+
+    response = requests.get(
+        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,solana,ethereum&vs_currencies=usd')
+    data = response.json()
 
     # Get currencies associated with the latest CryptoPrice entry
-    currencies = Currency.objects.filter(crypto_prices=latest_crypto_price)
+    currencies = Currency.objects.filter(crypto_prices=last_updated)
 
     # Prepare context to pass to the template
-    context = {
-        'latest_crypto_price': latest_crypto_price,
-        'currencies': currencies
-    }
-    return render(request, 'prices.html', {'currencies': currencies})
+
+    return render(request, 'prices.html', {'last_updated': last_updated,
+                                           'currencies': currencies, 'data': data})

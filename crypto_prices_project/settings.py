@@ -119,7 +119,7 @@ USE_TZ = True
 
 # Celery settings
 CELERY_BROKER_URL = 'memory://localhost/'  # In-memory broker URL
-CELERY_RESULT_BACKEND = 'rpc://'  # In-memory result backend URL
+CELERY_RESULT_BACKEND = 'db+sqlite:///db.sqlite3'  # In-memory result backend URL
 
 # Other Celery settings...
 
