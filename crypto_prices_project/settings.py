@@ -134,10 +134,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# settings.py
 
 # Logging configuration
-# settings.py
 
 
 # Define the base directory of your Django project
