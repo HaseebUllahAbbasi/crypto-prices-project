@@ -4,18 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cryptocurrency Prices</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      .currency {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+      }
+      .currency h2 {
+        margin-top: 0;
+        color: #555;
+      }
+      .currency p {
+        margin: 5px 0;
+        color: #777;
+      }
+    </style>
   </head>
   <body>
-    <!-- {{data}} -->
-    <h1>Cryptocurrency Prices</h1>
-    {{last_updated}}
-    <div id="crypto-prices">
-      {% for currency in currencies %}
-      <div class="currency">
-        <h2>{{ currency.name }}</h2>
-        <p>Price: ${{ currency.value }}</p>
+    <div class="container">
+      <h1>Cryptocurrency Prices</h1>
+      <p>Last Updated: {{ last_updated }}</p>
+      <div id="crypto-prices">
+        {% for currency in currencies %}
+        <div class="currency">
+          <h2>{{ currency.name }}</h2>
+          <p>Price: ${{ currency.value }}</p>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </body>
 </html>
