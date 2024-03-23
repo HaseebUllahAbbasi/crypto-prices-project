@@ -120,7 +120,8 @@ USE_TZ = True
 # Celery settings
 CELERY_TIMEZONE = 'Asia/Karachi'  # In-memory broker URL
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'  # In-memory broker URL
+CELERY_BROKER_URL = os.getenv('REDIS_URL', 'redis://localhost:6379')
+# CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'  # In-memory broker URL
 CELERY_RESULT_BACKEND = 'db+sqlite:///db.sqlite3'  # In-memory result backend URL
 # CELERY_RESULT_BACKEND = 'django-db'
 
